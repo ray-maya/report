@@ -15,6 +15,8 @@ struct Std {
     string n;
     int id;
     string m;
+    vector<Crs> crs;
+
 };
 float moadel() {
 	    Crs C;
@@ -27,17 +29,26 @@ float moadel() {
            moadel1=soorat / vahedha;
         return (moadel1);
     }
+    
+vector<Std> stds;
 Std readstd() {
 	Std s;
     cout << "name: "; getline(cin, s.n);    
-    cout << "id: "; cin>>s.id;
+    cout << "id: "; cin>>s.id; cin.ignore();          //khali kardim bafer ra
     cout << "major: "; getline(cin, s.m);
-	
+	stds.push_back(s);
 	cout<<"successful";
     return s;
 }
 int main()
 {
 	Std s;
-	s=readstd();
+	int ch;
+	cout<< "choose a number please"<<"\n"<<"1- add student"<<"\n"<<"2- Exit
+	";
+	cin>>ch;
+	while(ch!=2)
+	{
+		s=readstd();
+	}
 }
