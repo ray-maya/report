@@ -17,18 +17,17 @@ struct Std {
     string m;
     vector<Crs> crs;
 
-};
 float moadel() {
-	    Crs C;
     	float moadel1 = 0;
         int vahedha = 0, soorat = 0;
-        for (int i = 0; i < 4; i++) {
-            vahedha += C.v;        
-            soorat += C.v * C.nomre;
+        for (int i = 0; i < crs.size(); i++) {
+            vahedha += crs[i].v;        
+            soorat += crs[i].v * crs[i].nomre;
         }
            moadel1=soorat / vahedha;
         return (moadel1);
     }
+};
     
 vector<Std> stds;
 void readstd() {
@@ -75,7 +74,8 @@ void menu() {
     cout << "1- add a student" << "\n";
     cout << "2- add a cours" << "\n";
     cout << "3- list student" << "\n";
-    cout << "4- Exit" << "\n";
+    cout << "4- remove student" << "\n";
+    cout << "5- Exit" << "\n";
 
 }
 // list std
@@ -130,20 +130,36 @@ void listStds() {
 		
 	}
 }
+// remove std
+void removstd() {
+    int q;
+    cout << ">< student id to remove ><";
+    cin>>q;
+
+    for (int i = 0; i < stds.size(); i++) {
+        if (stds[i].id == q) {
+            stds.erase(stds.begin() + i);
+            cout << "it was successfully =)" << q << "\n";
+            return;
+        }
+    }
+    cout << "not found!!!!!" << "\n";
+}
 
 int main()
 {
 	Std s;
 	int ch=0;
 	cout<< "choose a number please"<<"\n";
-	while(ch!=2)
+	while(ch!=5)
 	{
 		menu();
         cin>>ch;
-		switch (ch) {
+		switch (ch != 5) {
             case 1: readstd(); break;
             case 2: readCrs(); break;
             case 3: listStds(); break;
+            case 4: removstd(); break;
         }
 	}
 }
