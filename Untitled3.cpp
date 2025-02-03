@@ -68,20 +68,22 @@ void readCrs() {
             return;
         }
     }
-    cout << "not found!!!!!" << "\n";
+    cout << "EERROR!!!!! not found!!!!!" << "\n";
 }
 void menu() {
     cout << "1- add a student" << "\n";
-    cout << "2- add a cours" << "\n";
-    cout << "3- list student" << "\n";
-    cout << "4- remove student" << "\n";
-    cout << "5- Exit" << "\n";
-
+    cout << "2- add a course" << "\n";
+    cout << "3- list students (by moadel)" << "\n";
+    cout << "4- student report" << "\n";
+    cout << "5- remove a student" << "\n";
+    cout << "6- find a student" << "\n";
+    cout << "7- edit student" <<"\n";
+    cout << "8- Exit" << "\n";
 }
 // list std
 void listStds() {
     if (stds.size()==0) {
-    cout << "not found!!!!!" << "\n";
+    cout << "EERROR!!!!! not found!!!!!" << "\n";
         return;
     }
     int which;
@@ -143,7 +145,86 @@ void removstd() {
             return;
         }
     }
-    cout << "not found!!!!!" << "\n";
+    cout << "EERROR!!!!! not found!!!!!"  << "\n";
+}
+
+// search
+void findStd() {
+    int a;
+    cout << "OO student id to find: OO";
+    cin>>a;
+
+    for (int i = 0; i < stds.size(); i++) {
+        if (stds[i].id == a) {
+            cout << ">> it is:";
+            cout << "\t" << "name: " << stds[i].n;
+			cout << "\t" << "id: " << stds[i].id;
+			cout << "\t" << "major: " << stds[i].m;
+			cout << "\t" << "moadel: " << stds[i].moadel() << "\n";
+            return;
+        }
+    }
+    cout << "EERROR!!!!! not found!!!!!" << "\n";
+}
+
+//edit std
+void editstd()
+{
+	int d;
+	cout<<"id :";
+    cin>>d;
+    for(int j =0; j< stds.size(); j++)
+    {
+    	if( d == stds[j].id)
+  	   {
+    	   	cout<<"you want to edit which?"<<"\n";
+    	   	cout<<"1- name"<<"\n";
+    	   	cout<<"2- id" << "\n";
+    	   	cout<<"3- major" <<"\n";
+    	   	cout<<"4- Exit" <<"\n";
+    	   	int s, f1;
+    	   	string f;
+    	   	cin.ignore();
+    	   	cin>>s;
+    	   	cin.ignore();
+    	   	switch(s)
+    	   	{
+    	   		case 1: cout<<"enter name: "; cin.ignore(); cin>>f; stds[j].n=f; break;
+    	   		case 2: cout<<"enter id: "; cin.ignore(); cin>>f1; stds[j].id=f1; break;
+    	   		case 3: cout<<"enter majore: "; cin.ignore(); cin>>f; stds[j].m=f; break;
+    	   		case 4: break;
+		    }
+		    return;
+	   }
+    }
+    }
+
+//report
+void report() {
+    int e;
+    cout << "student id to report: ";
+    cin>>e;
+
+    for (int i = 0; i < stds.size(); i++) {
+        if (stds[i].id == e) {
+            cout << ">>>>> report <<<<<";
+            cout << "\n" << "name: " << stds[i].n;
+			cout << "\t" << "id: " << stds[i].id;
+			cout << "\t" << "major: " << stds[i].m;
+			cout << "\t" << "moadel: " << stds[i].moadel() << "\n";
+            cout << "------------------------------\n";
+            cout << "cours|" << "\t" <<"vahed|" << "\t" <<"nomre|" << "\n";
+            cout << "------------------------------\n";
+            for (int j = 0; j < stds[i].crs.size(); j++) {
+                cout << stds[i].crs[j].n;
+				cout << "\t" << stds[i].crs[j].v;
+				cout << "\t" << stds[i].crs[j].nomre << "\n";
+            }
+            cout << "------------------------------\n";
+            return;
+        }
+    }
+    cout << "EERROR!!!!! not found!!!!!" << "\n";
 }
 
 int main()
@@ -151,15 +232,18 @@ int main()
 	Std s;
 	int ch=0;
 	cout<< "choose a number please"<<"\n";
-	while(ch!=5)
+	while(ch!=8)
 	{
 		menu();
         cin>>ch;
-		switch (ch != 5) {
+		switch (ch) {
             case 1: readstd(); break;
             case 2: readCrs(); break;
             case 3: listStds(); break;
-            case 4: removstd(); break;
+            case 4: report(); break;
+            case 5: removstd(); break;
+            case 6: findStd(); break;
+            case 7: editstd(); break;
         }
 	}
 }
