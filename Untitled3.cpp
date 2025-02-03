@@ -7,7 +7,7 @@ using namespace std;
 struct Crs {
     string n;
     int v;
-    int nomre;
+    float nomre;
 };
 
 // get student
@@ -31,18 +31,50 @@ float moadel() {
     }
     
 vector<Std> stds;
-Std readstd() {
-	Std s;
-    cout << "name: "; getline(cin, s.n);   
-    cout << "id: "; cin>>s.id; cin.ignore();          //khali kardim bafer ra
-    cout << "major: "; getline(cin, s.m);
-	stds.push_back(s);
-	cout<<"successful";
-    return s;
+void readstd() {
+    Std s;
+    cout << "student name: ";
+    getline(cin, s.n);
+    
+    cout << "student id: ";
+    cin>>s.id;
+    cin.ignore();
+    
+    cout << "major: ";
+    getline(cin, s.m);
+    
+    stds.push_back(s);
+    cout<<"it was successfully =)"<<"\n";
+}
+void readCrs() {
+    int id;
+    cout << "the id: ";
+    cin>>id;
+    cin.ignore();
+    
+    for (int i = 0; i < stds.size(); i++)
+	{
+        if (stds[i].id == id)
+		{
+            Crs c;
+            cout << "course name: ";
+            getline(cin, c.n);
+            cout << "course vahed: ";
+            cin >> c.v;
+            cout << "course nomre: ";
+            cin >> c.nomre;
+            cin.ignore();
+            stds[i].crs.push_back(c);
+            cout<<"successful"<<"\n";
+            return;
+        }
+    }
+    cout << "not found!!!!!" << "\n";
 }
 void menu() {
     cout << "1- add a student" << "\n";
-    cout << "2- Exit" << "\n";
+    cout << "2- add a cours" << "\n";
+    cout << "3- Exit" << "\n";
 }
 
 int main()
@@ -56,8 +88,11 @@ int main()
         cin>>ch;
 		if(ch == 1)
 		{
-    	s=readstd();
-
+    	readstd();
+		}
+		if( ch == 2)
+		{
+		readCrs();
 		}
 	}
 }
