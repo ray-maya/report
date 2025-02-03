@@ -330,31 +330,6 @@ int main() {
     return 0;
 }
 ```
-int main() {
-    int ch=0;
-    cout << "hi welcome =)))))" << "\n" << "you can click a num: " << "\n";
-    while (ch != 9)
-    {
-        menu();
-        cin >> ch;
-        cin.ignore();
-
-        switch (ch) {
-            case 1: readstd(); break;
-            case 2: readCrs(); break;
-            case 3: listStds(); break;
-            case 4: report(); break;
-            case 5: removstd(); break;
-            case 6: findStd(); break;
-            case 7: editstd(); break;
-            case 8: editcr(); break;
-            case 9: cout << "Exit"; break;
-            default: cout << "can you choose again? i couldnt undrestand :/" << "\n"; break;
-        }
-    }
-
-    return 0;
-}
 <br>این تابع اصلی است منو را نمایش میدهد سپس عددی دریافت می کند، با استفاده از سیچچ کیس هر ویدی که مرتبط باشد را اجرا میکند
 <br>در قسمت پایین کد منو نوشته
 ```cpp
